@@ -8,7 +8,7 @@ interface TokenBalanceProps {
 
 const TokenBalance: React.FC<TokenBalanceProps> = ({ address }) => {
     const [tokenBalance, setTokenBalance] = useState<string>('0'); // Initialize balance to '0'
-    const tokenAddress = '0xf8e81D47203A594245E36C48e151709F0C19fBe8'; // Replace with your token address
+    const tokenAddress = '0x94570E489A1b8f3C334aF3aE87d5F04ec683cbec'; // Replace with your token address
 
     const fetchTokenBalance = async () => {
         // Check if MetaMask is installed

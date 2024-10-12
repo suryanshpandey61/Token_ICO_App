@@ -9,7 +9,7 @@ interface SendTokensProps {
 const SendTokens: React.FC<SendTokensProps> = ({ address }) => {
     const [recipient, setRecipient] = useState<string>(''); // State for recipient address
     const [amount, setAmount] = useState<string>(''); // State for amount
-    const tokenAddress = '0xf8e81D47203A594245E36C48e151709F0C19fBe8'; // Replace with your token address
+    const tokenAddress = '0x94570E489A1b8f3C334aF3aE87d5F04ec683cbec'; // Replace with your token address
 
     const sendTokens = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault(); // Prevent the default form submission behavior
@@ -37,14 +37,14 @@ const SendTokens: React.FC<SendTokensProps> = ({ address }) => {
             <h2 className="text-2xl font-bold text-slate-800 text-center  mb-4">Send Tokens</h2>
            <div className='flex gap-x-2'>
            <input
-                className="border border-gray-300 p-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="border text-black border-gray-300 p-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-red-500"
                 type="text"
                 placeholder="Recipient Address"
                 value={recipient}
                 onChange={(e) => setRecipient(e.target.value)}
             />
             <input
-                className="border border-gray-300 p-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="border text-black border-gray-300 p-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-red-500"
                 type="text"
                 placeholder="Amount"
                 value={amount}
