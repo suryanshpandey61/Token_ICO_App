@@ -33,9 +33,10 @@ const SendTokens: React.FC<SendTokensProps> = ({ address }) => {
     };
 
     return (
-        <form onSubmit={sendTokens} className="bg-white shadow-md rounded-lg p-6 space-y-4 max-w-md mx-auto">
-            <h2 className="text-xl font-semibold mb-4">Send Tokens</h2>
-            <input
+        <form onSubmit={sendTokens} className=" shadow-lg border  border-black rounded-lg p-6 space-y-4 mt-8 max-w-[800px] mx-auto">
+            <h2 className="text-2xl font-bold text-slate-800 text-center  mb-4">Send Tokens</h2>
+           <div className='flex gap-x-2'>
+           <input
                 className="border border-gray-300 p-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="text"
                 placeholder="Recipient Address"
@@ -49,9 +50,10 @@ const SendTokens: React.FC<SendTokensProps> = ({ address }) => {
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
             />
+           </div>
             <button 
                 type="submit" 
-                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-md transition duration-200 w-full"
+                className="bg-green-500 hover:bg-green-800 text-white font-semibold px-4 py-2 rounded-md transition duration-200 w-full"
             >
                 Send Tokens
             </button>

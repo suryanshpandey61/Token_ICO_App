@@ -31,18 +31,19 @@ const TokenBalance: React.FC<TokenBalanceProps> = ({ address }) => {
             setTokenBalance(ethers.formatUnits(balance, decimals));
         } catch (error) {
             console.error('Error fetching token balance:', error);
-            alert('Error fetching token balance. Please try again later.');
+           
         }
     };
 
     useEffect(() => {
         fetchTokenBalance(); // Call the function to fetch token balance on mount
-    }, [fetchTokenBalance]); // Add address as a dependency to refetch when it changes
+    }, [address]); // Add address as a dependency to refetch when it changes
 
     return (
-        <div className="bg-white shadow-md rounded-lg p-6 max-w-md mx-auto text-center">
-            <h3 className="text-2xl font-semibold mb-4">Token Balance</h3> {/* Title */}
-            <p className="text-lg text-gray-700">Balance: <span className="font-bold">{tokenBalance}</span> MTK</p> {/* Display token balance */}
+        <div>
+            <p className="text-2xl text-black font-bold ml-[15px]">
+                Token Balance: <span className="font-bold">{tokenBalance}</span> MTK
+            </p> {/* Display token balance */}
         </div>
     );
 };

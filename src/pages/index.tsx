@@ -8,8 +8,8 @@ const Home: React.FC = () => {
     const [address, setAddress] = useState<string>('');
 
     return (
-        <div className="container mx-auto p-6">
-            <h1 className="text-3xl font-bold text-center mb-6">Welcome to the Token DApp</h1>
+        <div className="container h-[100vh]  mx-auto p-6">
+            <h1 className="text-3xl font-bold text-center font-serif  text-slate-500 underline mb-6">Suryansh's Token ICO App</h1>
             <ConnectWallet setAddress={setAddress} />
             {address && (
                 <div className="mt-6">
