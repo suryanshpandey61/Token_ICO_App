@@ -41,7 +41,7 @@ const TokenBalance: React.FC<TokenBalanceProps> = ({ address }) => {
 
     return (
         <div>
-            <p className="text-2xl text-black font-bold ml-[15px]">
+            <p className="md:text-2xl text-xl text-black font-bold ml-[15px]">
                 Token Balance: <span className="font-bold">{tokenBalance}</span> MTK
             </p> {/* Display token balance */}
         </div>
