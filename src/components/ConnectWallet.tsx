@@ -6,62 +6,67 @@ interface ConnectWalletProps {
 }
 
 const ConnectWallet: React.FC<ConnectWalletProps> = ({ setAddress }) => {
-    const [balance, setBalance] = useState<string>(''); // Store wallet balance
-    const [isConnected, setIsConnected] = useState<boolean>(false); // Track connection status
-    const [loading, setLoading] = useState<boolean>(false); // Track loading state
+    const [balance, setBalance] = useState<string>('');
+    const [isConnected, setIsConnected] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
 
-    // Simulate connecting to MetaMask and getting wallet details
+    // Define the Holesky network RPC URL
+    const HOLESKY_RPC_URL = 'https://rpc.ankr.com/eth_holesky'; // Replace with the actual RPC URL if necessary
+
     const connectWallet = async () => {
-        setLoading(true); // Start loading
+        setLoading(true);
         try {
             if ((window as any).ethereum) {
                 const provider = new ethers.BrowserProvider((window as any).ethereum);
+                // Set the network to Holesky
+                await provider.send('wallet_switchEthereumChain', [{ chainId: '0xYourChainId' }]); // Replace with the Holesky chain ID
+
                 const accounts = await provider.send('eth_requestAccounts', []);
                 const signer = await provider.getSigner();
                 const walletAddress = await signer.getAddress();
                 setAddress(walletAddress);
 
-                const walletBalance = await provider.getBalance(walletAddress);
+                // Create a new provider specifically for Holesky
+                const holeskyProvider = new ethers.JsonRpcProvider(HOLESKY_RPC_URL);
+                const walletBalance = await holeskyProvider.getBalance(walletAddress);
                 setBalance(ethers.formatEther(walletBalance));
 
-                // Simulate delay before completing connection
                 setTimeout(() => {
-                    setIsConnected(true); // Set connection status to true
-                    setLoading(false); // Stop loading
-                }, 2000); // 2 seconds delay
+                    setIsConnected(true);
+                    setLoading(false);
+                }, 2000);
             } else {
                 alert('MetaMask not detected!');
-                setLoading(false); // Stop loading if no MetaMask
+                setLoading(false);
             }
         } catch (error) {
             console.error(error);
-            setLoading(false); // Stop loading in case of error
+            setLoading(false);
         }
     };
 
-    // Simulate disconnecting wallet
     const disconnectWallet = () => {
-        setLoading(true); // Start loading
+        setLoading(true);
         setTimeout(() => {
-            setAddress(''); // Clear address
-            setBalance(''); // Clear balance
-            setIsConnected(false); // Set connection status to false
-            setLoading(false); // Stop loading
-        }, 2000); // 2 seconds delay
+            setAddress('');
+            setBalance('');
+            setIsConnected(false);
+            setLoading(false);
+        }, 2000);
     };
 
     useEffect(() => {
-        connectWallet(); // Automatically try to connect on page load
+        connectWallet();
     }, [setAddress]);
 
     return (
-        <div className="flex justify-between items-center    w-[1200px] mx-auto">
-           <div className=''>
-              <h2 className="text-2xl text-black font-bold mb-4">ETH Balance: {balance} ETH</h2>
-           </div>
+        <div className="flex justify-between items-center w-[1200px] mx-auto">
+            <div>
+                <h2 className="text-2xl text-black font-bold mb-4">ETH Balance: {balance} ETH</h2>
+            </div>
 
             {loading ? (
-                <p className="text-white">Processing...</p> // Show loading message/spinner
+                <p className="text-white">Processing...</p>
             ) : (
                 !isConnected ? (
                     <button
