@@ -96,7 +96,7 @@ const ConnectWallet: React.FC<ConnectWalletProps> = ({ setAddress }) => {
 
     return (
         <div className="flex flex-col md:flex-row text-black w-full max-w-[1200px] justify-between mx-auto p-4">
-            <h2 className="text-xl md:text-2xl font-bold mt-2 ml-[-15px] md:mt-5">ETH Balance: {balance} ETH</h2>
+            <h2 className="text-xl md:text-2xl font-bold mt-2 ml-[-15px] md:mt-5">ETHER  Balance: {balance} ETH</h2>
 
             {loading ? (
                 <p className="text-white loader"></p>
